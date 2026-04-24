@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visual Chat App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="bg-slider" class="bg-slider"></div>
+
+    <div class="overlay">
+        <div class="controls">
+            <input type="file" id="upload-btn" accept="image/*" hidden>
+            <label for="upload-btn" class="btn">Upload Image</label>
+            <button id="toggle-chat" class="btn">Chat</button>
+        </div>
+    </div>
+
+    <div id="chat-sidebar" class="chat-sidebar">
+        <div class="chat-header">Image Discussion</div>
+        <div id="chat-output" class="chat-output"></div>
+        <div class="chat-input-area">
+            <input type="text" id="chat-input" placeholder="Ask about the image...">
+            <button id="send-btn">Send</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
