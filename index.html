@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visual AI Chat</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+</head>
+<body>
+
+    <div id="bg-slider" class="bg-slider"></div>
+
+    <div class="main-interface">
+        <header class="app-header">
+            <h1 class="logo">VISUAL<span>AI</span></h1>
+        </header>
+
+        <div class="action-bar">
+            <input type="file" id="image-upload" accept="image/*" hidden>
+            <label for="image-upload" class="btn primary-btn">
+                <span class="icon">⬆</span> Upload Picture
+            </label>
+            
+            <button id="chat-toggle" class="btn secondary-btn">
+                <span class="icon">💬</span> Open Chat
+            </button>
+        </div>
+    </div>
+
+    <aside id="chat-panel" class="chat-panel">
+        <div class="chat-header">
+            <h3>Image Analysis</h3>
+            <button id="close-chat" class="close-btn">&times;</button>
+        </div>
+
+        <div id="chat-history" class="chat-history">
+            <div class="msg bot-msg">Upload an image to start a discussion!</div>
+        </div>
+
+        <div class="chat-input-container">
+            <input type="text" id="user-input" placeholder="Ask about this photo...">
+            <button id="send-msg-btn">Send</button>
+        </div>
+    </aside>
+
+    <script src="script.js"></script>
+</body>
+</html>
