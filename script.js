@@ -1,26 +1,44 @@
-async function sendMessage() {
+const uploadBtn = document.getElementById('upload-btn');
+const bgSlider = document.getElementById('bg-slider');
+const chatSidebar = document.getElementById('chat-sidebar');
+const toggleChat = document.getElementById('toggle-chat');
+const chatInput = document.getElementById('chat-input');
+const chatOutput = document.getElementById('chat-output');
+const sendBtn = document.getElementById('send-btn');
+
+// Handle Image Upload
+uploadBtn.addEventListener('change', function(e) {
+    const file = e.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(event) {
+            bgSlider.style.backgroundImage = `url('${event.target.result}')`;
+            // Trigger a slide-in effect
+            bgSlider.style.transform = "scale(1.1)";
+            setTimeout(() => bgSlider.style.transform = "scale(1)", 500);
+        };
+        reader.readAsDataURL(file);
+    }
+});
+
+// Toggle Chat Sidebar
+toggleChat.addEventListener('click', () => {
+    chatSidebar.classList.toggle('active');
+});
+
+// Simple Chat Functionality
+function sendMessage() {
     const text = chatInput.value;
     if (text.trim() !== "") {
-        // 1. Display user message locally
-        const userMsg = document.createElement('p');
-        userMsg.innerHTML = `<strong>You:</strong> ${text}`;
-        chatOutput.appendChild(userMsg);
-
-        // 2. Send to the /api/chat backend
-        const response = await fetch('/api/chat', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ message: text })
-        });
-
-        const data = await response.json();
-
-        // 3. Display the "AI" response
-        const botMsg = document.createElement('p');
-        botMsg.innerHTML = `<strong>AI:</strong> ${data.reply}`;
-        chatOutput.appendChild(botMsg);
-
+        const msg = document.createElement('p');
+        msg.innerHTML = `<strong>You:</strong> ${text}`;
+        chatOutput.appendChild(msg);
         chatInput.value = "";
         chatOutput.scrollTop = chatOutput.scrollHeight;
     }
 }
+
+sendBtn.addEventListener('click', sendMessage);
+chatInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') sendMessage();
+});
